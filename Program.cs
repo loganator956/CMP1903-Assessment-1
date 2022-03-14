@@ -11,7 +11,6 @@ namespace CMP1903M_Assessment_1
     {
         static void Main()
         {
-            Console.WriteLine("Hello, World!");
             //Local list of integers to hold the first five measurements of the text
             List<int> parameters = new List<int>();
 
@@ -33,8 +32,5 @@ namespace CMP1903M_Assessment_1
 
            
         }
-        
-        
-    
     }
 }

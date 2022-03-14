@@ -15,7 +15,7 @@ namespace CMP1903M_Assessment_1
         //Arguments: none
         //Returns: string
         //Gets text input from the keyboard
-        public string manualTextInput()
+        public string ManualTextInput()
         {
 
             return text;
@@ -25,7 +25,7 @@ namespace CMP1903M_Assessment_1
         //Arguments: string (the file path)
         //Returns: string
         //Gets text input from a .txt file
-        public string fileTextInput(string fileName)
+        public string FileTextInput(string fileName)
         {
 
             return text;
