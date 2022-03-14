@@ -16,6 +16,7 @@ namespace CMP1903M_Assessment_1
         //Calculates and returns an analysis of the text
         public List<int> AnalyseText(string input)
         {
+            // TODO: A list of numbers, to me is less reliable and easy to expand/work with since you have to keep track of the order of them and all that. Should instead, replace it with another data type or create one 'Analysis' or something
             //List of integers to hold the first five measurements:
             //1. Number of sentences
             //2. Number of vowels
@@ -28,7 +29,6 @@ namespace CMP1903M_Assessment_1
             {
                 values.Add(0);
             }
-
 
             return values;
         }
