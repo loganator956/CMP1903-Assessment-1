@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CMP1903M_Assessment_1.Debugging;
 
 namespace CMP1903M_Assessment_1
 {
+    /// <summary>
+    /// Handles taking and verifying user input
+    /// </summary>
     public static class Input
     {
         //Handles the text input for Assessment 1
@@ -19,7 +23,7 @@ namespace CMP1903M_Assessment_1
             string text = "";
 
             Console.WriteLine("Manual Text Input (Use * to indicate end of text input)");
-            
+            // TODO: Could do with making this multi line input bit better
             while(true)
             {
                 string newLine = Console.ReadLine();
