@@ -24,7 +24,8 @@ namespace CMP1903M_Assessment_1
                         Console.WriteLine($"{Input.ManualTextInput()}");
                         break;
                     case 2:
-                        throw new NotImplementedException();
+                        Console.WriteLine($"{Input.FileTextInput()}");
+                        break;
                     default:
                         Debug.LogError($"Unrecognised option {selection}");
                         break;
