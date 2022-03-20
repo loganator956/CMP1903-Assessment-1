@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,15 +38,57 @@ namespace CMP1903M_Assessment_1
         }
 
         /// <summary>
+        /// Prompts user for a path to file and then reads the text from it
+        /// </summary>
+        /// <returns>The string contents of the text file</returns>
+        public static string FileTextInput()
+        {
+            const string DefaultFilePath = "text.txt";
+
+            Console.WriteLine($"Enter the file name to read. (Default: '{DefaultFilePath}'");
+            string response = Console.ReadLine();
+
+            string filePath = string.Empty;
+
+            if (string.IsNullOrEmpty(response))
+            {
+                // user responded with nothing, use default
+                filePath = DefaultFilePath;
+            }
+            else
+            {
+                // user inputted something, pass the input
+                filePath = response;
+            }
+            return FileTextInput(filePath);
+        }
+
+        /// <summary>
         /// Gets the text input from a file
         /// </summary>
         /// <param name="fileName">the name/path to the file to read</param>
         /// <returns>the text within the file</returns>
         public static string FileTextInput(string fileName)
         {
-            string text = "";
-            throw new NotImplementedException();
-            // TODO: Read file
+            string text = string.Empty;
+
+            // make sure the file exists before attempting to access it
+            if (!File.Exists(fileName))
+            {
+                Debug.LogError($"File not found at {fileName}");
+                Console.WriteLine("Try inputting a correct path");
+                return FileTextInput();
+            }
+            try
+            {
+                string fileContents = File.ReadAllText(fileName);
+                text = fileContents;
+            }
+            catch (Exception except)
+            {
+                Debug.LogError(except.Message);
+            }
+
             return text;
         }
 
