@@ -13,7 +13,7 @@ namespace CMP1903M_Assessment_1
     public static class Input
     {
         //Handles the text input for Assessment 1
-        
+
         /// <summary>
         /// Gets text input from the keyboard
         /// </summary>
@@ -22,18 +22,20 @@ namespace CMP1903M_Assessment_1
         {
             string text = "";
 
-            Console.WriteLine("Manual Text Input (Use * to indicate end of text input)");
-            // TODO: Could do with making this multi line input bit better
-            while(true)
+            Console.WriteLine("Manual Text Input (Supports multiline using \'\\n\'");
+            string inputText = Console.ReadLine();
+            if (string.IsNullOrEmpty(inputText)) { return ""; };
+            text = inputText.Replace("\\n", "\n");
+
+            if (ShowConfirmDialog(text))
             {
-                string newLine = Console.ReadLine();
-                text += newLine + "\n";
-                if (newLine.EndsWith('*'))
-                {
-                    break;
-                }
+                return text;
             }
-            return text;
+            else
+            {
+                Console.WriteLine("Input your new text");
+                return ManualTextInput();
+            }
         }
 
         /// <summary>
@@ -47,6 +49,23 @@ namespace CMP1903M_Assessment_1
             throw new NotImplementedException();
             // TODO: Read file
             return text;
+        }
+
+        /// <summary>
+        /// Shows a confirmation prompt to get the user to confirm their inputs
+        /// </summary>
+        /// <param name="input">The user's inputted text</param>
+        /// <returns>Whether the user confirms or unconfirms their input</returns>
+        static bool ShowConfirmDialog(string input)
+        {
+            Console.WriteLine($"Are you sure about your inputs (Y/n):\n{input}");
+            string response = Console.ReadLine();
+            // defaults to yes in this case so only check if the user says no
+            if (response.Trim().ToLower() == "n")
+            {
+                return false;
+            }
+            return true;
         }
 
     }
