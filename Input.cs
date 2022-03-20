@@ -12,8 +12,6 @@ namespace CMP1903M_Assessment_1
     /// </summary>
     public static class Input
     {
-        //Handles the text input for Assessment 1
-
         /// <summary>
         /// Gets text input from the keyboard
         /// </summary>
