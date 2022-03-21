@@ -45,7 +45,7 @@ namespace CMP1903M_Assessment_1
         {
             const string DefaultFilePath = "text.txt";
 
-            Console.WriteLine($"Enter the file name to read. (Default: '{DefaultFilePath}'");
+            Console.WriteLine($"Enter the file name to read. (Default: '{DefaultFilePath}')");
             string response = Console.ReadLine();
 
             string filePath = string.Empty;
