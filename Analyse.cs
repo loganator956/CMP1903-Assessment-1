@@ -7,30 +7,93 @@ using CMP1903M_Assessment_1.Debugging;
 
 namespace CMP1903M_Assessment_1
 {
+    /// <summary>
+    /// Stores and analyses the user input
+    /// </summary>
     public class Analyse
     {
-        //Handles the analysis of text
-
-        //Method: analyseText
-        //Arguments: string
-        //Returns: list of integers
-        //Calculates and returns an analysis of the text
-        public List<int> AnalyseText(string input)
+        private string _text = string.Empty;
+        public string Text
         {
-            // TODO: A list of numbers, to me is less reliable and easy to expand/work with since you have to keep track of the order of them and all that. Should instead, replace it with another data type or create one 'Analysis' or something
+            get { return _text; }
+            private set { _text = value; }
+        }
+
+        public Analyse(string text)
+        {
+            Text = text;
+        }
+
+        readonly char[] Vowels = { 'a', 'e', 'i', 'o', 'u' };
+
+        /*
+        1. Sentence Count
+        2. Vowels Count
+        3. Sonsonants Count
+        4. Upper Case Letters Count
+        5. Lower Case Letters Count
+        */
+        int[] statistics = new int[5];
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public int[] AnalyseText()
+        {
             //List of integers to hold the first five measurements:
             //1. Number of sentences
             //2. Number of vowels
             //3. Number of consonants
             //4. Number of upper case letters
             //5. Number of lower case letters
-            List<int> values = new List<int>();
-            //Initialise all the values in the list to '0'
-            for(int i = 0; i<5; i++)
-            {
-                values.Add(0);
-            }
+            int[] values = new int[5];
 
+            char[] inputChars = Text.ToCharArray();
+
+            #region sentences
+            string[] sentences = Text.Split('.');
+            values[0] = sentences.Length;
+            #endregion
+
+            #region vowels & consonants
+            int vowelCount = 0;
+            int consonantsCount = 0;
+            foreach (char c in inputChars)
+            {
+                if (Vowels.Contains(c))
+                {
+                    vowelCount++;
+                }
+                else
+                {
+                    consonantsCount++;
+                }
+            }
+            values[1] = vowelCount;
+            values[2] = consonantsCount;
+            #endregion
+
+            #region cases
+            int upperCount = 0;
+            int lowerCount = 0;
+            foreach (char c in inputChars)
+            {
+                if (Char.IsUpper(c))
+                {
+                    upperCount++;
+                }
+                else
+                {
+                    lowerCount++;
+                }
+            }
+            values[3] = upperCount;
+            values[4] = lowerCount;
+            #endregion
+
+            statistics = values;
             return values;
         }
     }
