@@ -21,7 +21,9 @@ namespace CMP1903M_Assessment_1
                 switch (selection)
                 {
                     case 1:
-                        Console.WriteLine($"{Input.ManualTextInput()}");
+                        Analyse analysis = new Analyse(Input.ManualTextInput());
+                        analysis.AnalyseText();
+                        
                         break;
                     case 2:
                         Console.WriteLine($"{Input.FileTextInput()}");
@@ -36,6 +38,7 @@ namespace CMP1903M_Assessment_1
                 Debug.LogError($"Unrecognised input {input}");
                 Main();
             }
+
         }
     }
 }
