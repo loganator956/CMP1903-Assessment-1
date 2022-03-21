@@ -53,9 +53,13 @@ namespace CMP1903M_Assessment_1
             char[] inputChars = Text.ToCharArray();
 
             #region sentences
-            // TODO: Iterate through each sentence to ensure that it is actually a sentence (Use Trim and stuff)
             string[] sentences = Text.Split('.');
-            values[0] = sentences.Length;
+            int sentenceCount = 0;
+            foreach (string s in sentences)
+            {
+                if (s.Trim().Length != 0) { sentenceCount++; };
+            }
+            values[0] = sentenceCount;
             #endregion
 
             #region vowels & consonants
@@ -63,7 +67,7 @@ namespace CMP1903M_Assessment_1
             int consonantsCount = 0;
             foreach (char c in inputChars)
             {
-                if (Vowels.Contains(c))
+                if (Vowels.Contains(Char.ToLower(c)))
                 {
                     vowelCount++;
                 }
