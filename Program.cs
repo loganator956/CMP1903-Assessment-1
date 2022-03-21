@@ -18,20 +18,48 @@ namespace CMP1903M_Assessment_1
             int selection = 0;
             if (int.TryParse(input, out selection))
             {
+                Analyse analysis = null;
                 switch (selection)
                 {
                     case 1:
-                        Analyse analysis = new Analyse(Input.ManualTextInput());
-                        analysis.AnalyseText();
-                        // TODO: Add option to report to console or file
-                        Report.ReportToConsole(analysis);
+                        // manual text input
+                        analysis = new Analyse(Input.ManualTextInput());
                         break;
                     case 2:
-                        Console.WriteLine($"{Input.FileTextInput()}");
+                        analysis = new Analyse(Input.FileTextInput());
                         break;
                     default:
                         Debug.LogError($"Unrecognised option {selection}");
+                        Main();
                         break;
+                }
+                if (analysis != null)
+                {
+                    analysis.AnalyseText();
+                    Console.WriteLine("Report generated. Would you like to: \n1. View in Console (Default)\n2. View in File");
+                    // find out whether the user wants to report to console, file, or both
+                    string response = Console.ReadLine() ?? "1"; // Default to view in console, if null
+                    char[] responseChars = response.Trim().ToCharArray();
+                    bool console = false;
+                    bool file = false;
+                    foreach (char c in responseChars)
+                    {
+                        if (c == '1')
+                        {
+                            console = true;
+                        }
+                        else if (c == '2')
+                        {
+                            file = true;
+                        }
+                        else
+                        {
+                            Debug.LogError($"Unrecognised option: {c.ToString()}");
+                        }
+                    }
+                    if (!console && !file) { console = true; }; // ensures that the report will go to console if selects neither
+                    if (console) { Report.ReportToConsole(analysis); };
+                    if (file) { Report.ReportToFile(analysis); };
                 }
             }
             else
