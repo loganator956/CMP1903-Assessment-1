@@ -23,7 +23,8 @@ namespace CMP1903M_Assessment_1
                     case 1:
                         Analyse analysis = new Analyse(Input.ManualTextInput());
                         analysis.AnalyseText();
-                        
+                        // TODO: Add option to report to console or file
+                        Report.ReportToConsole(analysis);
                         break;
                     case 2:
                         Console.WriteLine($"{Input.FileTextInput()}");

@@ -33,7 +33,7 @@ namespace CMP1903M_Assessment_1
         4. Upper Case Letters Count
         5. Lower Case Letters Count
         */
-        int[] statistics = new int[5];
+        public int[] Statistics = new int[5];
 
         /// <summary>
         /// 
@@ -53,6 +53,7 @@ namespace CMP1903M_Assessment_1
             char[] inputChars = Text.ToCharArray();
 
             #region sentences
+            // TODO: Iterate through each sentence to ensure that it is actually a sentence (Use Trim and stuff)
             string[] sentences = Text.Split('.');
             values[0] = sentences.Length;
             #endregion
@@ -93,7 +94,11 @@ namespace CMP1903M_Assessment_1
             values[4] = lowerCount;
             #endregion
 
-            statistics = values;
+            // TODO: Count freq. of characters and stuff
+
+            // TODO: Gather long-words thing (READ BRIEF)
+
+            Statistics = values;
             return values;
         }
     }
