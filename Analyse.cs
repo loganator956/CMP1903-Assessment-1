@@ -35,6 +35,8 @@ namespace CMP1903M_Assessment_1
         */
         public int[] Statistics = new int[5];
 
+        public int[] LetterFrequencies = new int[26]; // add 97 to the index to get the char value
+
         /// <summary>
         /// 
         /// </summary>
@@ -86,7 +88,7 @@ namespace CMP1903M_Assessment_1
             values[2] = consonantsCount;
             #endregion
 
-            #region cases
+            #region upper & lower cases
             int upperCount = 0;
             int lowerCount = 0;
             foreach (char c in inputChars)
@@ -105,11 +107,45 @@ namespace CMP1903M_Assessment_1
             #endregion
 
             // TODO: Count freq. of characters and stuff
+            int[] characterFrequencies = new int[26];
+            foreach (char c in inputChars)
+            {
+                if (Char.IsLetter(c))
+                {
+                    characterFrequencies[Convert.ToInt32(Char.ToLower(c)) - 97]++;
+                }
+            }
 
-            // TODO: Gather long-words thing (READ BRIEF)
-
+            LetterFrequencies = characterFrequencies;
             Statistics = values;
             return values;
+        }
+
+        private const int LongWordThreshold = 7;
+
+        public List<string> GetLongWords()
+        {
+            List<string> longWordsList = new List<string>();
+
+            string wordProgress = "";
+            foreach (char c in Text.ToCharArray())
+            {
+                if (!Char.IsLetterOrDigit(c))
+                {
+                    // not a letter so split the word
+                    if (wordProgress.Length > LongWordThreshold)
+                    {
+                        // word is long
+                        // TODO: Could check if the word is already added to not have duplicates?
+                        longWordsList.Add(wordProgress);
+                    }
+                    wordProgress = "";
+                    continue;
+                }
+                wordProgress += c.ToString();
+            }
+
+            return longWordsList;
         }
     }
 }
