@@ -45,21 +45,16 @@ namespace CMP1903M_Assessment_1
                     foreach (char c in responseChars)
                     {
                         if (c == '1')
-                        {
                             console = true;
-                        }
                         else if (c == '2')
-                        {
                             file = true;
-                        }
                         else
-                        {
                             Debug.LogError($"Unrecognised option: {c.ToString()}");
-                        }
                     }
                     if (!console && !file) { console = true; }; // ensures that the report will go to console if selects neither
-                    if (console) { Report.ReportToConsole(analysis); };
-                    if (file) { Report.ReportToFile(analysis); };
+                    Report report = new Report(analysis);
+                    if (console) { report.ReportToConsole(); };
+                    if (file) { report.ReportToFile(); }; // TODO: Add option to choose where the file is saved to?
                 }
             }
             else
@@ -67,7 +62,6 @@ namespace CMP1903M_Assessment_1
                 Debug.LogError($"Unrecognised input {input}");
                 Main();
             }
-
         }
     }
 }
