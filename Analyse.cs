@@ -53,8 +53,19 @@ namespace CMP1903M_Assessment_1
             char[] inputChars = Text.ToCharArray();
 
             #region sentences
-            // TODO: Just realised you can end sentences with ? and ! and stuff oops
-            string[] sentences = Text.Split('.');
+            List<string> sentences = new List<string>();
+            string sentenceProgress = "";
+            foreach (char c in inputChars)
+            {
+                if (c == '!' || c == '.' || c == '?')
+                {
+                    sentences.Add(sentenceProgress);
+                    sentenceProgress = "";
+                    continue;
+                }
+                sentenceProgress += c.ToString();
+            }
+            // string[] sentences = Text.Split('.');
             int sentenceCount = 0;
             foreach (string s in sentences)
             {
