@@ -27,11 +27,11 @@ namespace CMP1903M_Assessment_1
         readonly char[] Vowels = { 'a', 'e', 'i', 'o', 'u' };
 
         /*
-        1. Sentence Count
-        2. Vowels Count
-        3. Sonsonants Count
-        4. Upper Case Letters Count
-        5. Lower Case Letters Count
+        0. Sentence Count
+        1. Vowels Count
+        2. Sonsonants Count
+        3. Upper Case Letters Count
+        4. Lower Case Letters Count
         */
         public int[] Statistics = new int[5];
 
@@ -42,12 +42,6 @@ namespace CMP1903M_Assessment_1
         /// <returns></returns>
         public int[] AnalyseText()
         {
-            //List of integers to hold the first five measurements:
-            //1. Number of sentences
-            //2. Number of vowels
-            //3. Number of consonants
-            //4. Number of upper case letters
-            //5. Number of lower case letters
             int[] values = new int[5];
 
             char[] inputChars = Text.ToCharArray();
