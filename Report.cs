@@ -11,42 +11,69 @@ namespace CMP1903M_Assessment_1
     /// <summary>
     /// Handles reporting/presenting the resulting data to the user
     /// </summary>
-    static class Report
+    class Report
     {
-        public static void ReportToConsole(Analyse analysis)
+        public Report(Analyse analysis)
         {
-            Console.WriteLine(GenerateReportText(analysis));
+            Analysis = analysis;
+            reportText = GenerateReportText();
+        }
+        public Analyse Analysis { get; private set; }
+        string reportText = "";
+
+        /// <summary>
+        /// Generates the report text from the analysis
+        /// </summary>
+        /// <returns>Report text</returns>
+        private string GenerateReportText()
+        {
+            string text = (@$"Analysis of Input:
+    Number of sentences:            {Analysis.Statistics[0]}
+    Number of vowels:               {Analysis.Statistics[1]}
+    Number of consonants:           {Analysis.Statistics[2]}
+    Number of upper case letters:   {Analysis.Statistics[3]}
+    Number of lower case letters:   {Analysis.Statistics[4]}
+Now for letter frequences:");
+            for (int i = 0; i < Analysis.LetterFrequencies.Length; i++)
+            {
+                char c = (char)(i + 97);
+                text += $"\n\t{c.ToString()}:\t{Analysis.LetterFrequencies[i].ToString()}";
+            }
+            return text;
         }
 
-        private static string GenerateReportText(Analyse analysis)
+        public void ReportToConsole()
         {
-            return (@$"Analysis of Input:
-    Number of sentences:            {analysis.Statistics[0]}
-    Number of vowels:               {analysis.Statistics[1]}
-    Number of consonants:           {analysis.Statistics[2]}
-    Number of upper case letters:   {analysis.Statistics[3]}
-    Number of lower case letters:   {analysis.Statistics[4]}");
+            Console.WriteLine(reportText);
         }
 
         private const string DefaultReportFilePath = "report.txt";
 
-        public static void ReportToFile(Analyse analysis)
+        public void ReportToFile()
         {
-            ReportToFile(analysis, DefaultReportFilePath);
+            ReportToFile(DefaultReportFilePath);
         }
 
-        public static void ReportToFile(Analyse analysis, string outputPath)
+        public void ReportToFile(string outputPath)
         {
-            Console.Write("\nSaving report to file");
+            Console.WriteLine("Saving report to file");
             try
             {
-                File.WriteAllText(outputPath, GenerateReportText(analysis));
-            Console.Write($"\rSuccessfully saved report to the file {outputPath}\n");
+                File.WriteAllText(outputPath, reportText);
+                Console.WriteLine($"Successfully saved report to the file {outputPath}");
+                Console.WriteLine("Checking long words");
+                List<string> longWords = Analysis.GetLongWords();
+                if (longWords.Count > 0)
+                {
+                    Console.WriteLine("Saving long words file");
+                    File.WriteAllLines("longwords.txt", longWords.ToArray());
+                    Console.WriteLine("Successfully saved long words to file :)");
+                }
             }
             catch (Exception except)
             {
                 Debug.LogError(except.Message);
-                Debug.LogError("Saving the file had errors :(. Exception message above.");
+                Debug.LogError("Saving the file had errors :( Exception message above.");
             }
         }
     }
