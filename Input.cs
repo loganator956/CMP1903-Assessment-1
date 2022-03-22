@@ -11,7 +11,7 @@ namespace CMP1903M_Assessment_1
     /// <summary>
     /// Handles taking and verifying user input
     /// </summary>
-    public static class Input
+    public static class Input // felt like this should be static rather than an instance
     {
         /// <summary>
         /// Gets text input from the keyboard
@@ -99,7 +99,7 @@ namespace CMP1903M_Assessment_1
         /// <returns>Whether the user confirms or unconfirms their input</returns>
         static bool ShowConfirmDialog(string input)
         {
-            Console.WriteLine($"Are you sure about your inputs (Y/n):\n{input}");
+            Console.WriteLine($"You entered:\n{input}\nAre you sure about your inputs [Y/n]?");
             string response = Console.ReadLine();
             // defaults to yes in this case so only check if the user says no
             if (response.Trim().ToLower() == "n")
