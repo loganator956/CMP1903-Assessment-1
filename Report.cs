@@ -11,10 +11,6 @@ namespace CMP1903M_Assessment_1
     /// </summary>
     static class Report
     {
-        //Handles the reporting of the analysis
-        //Maybe have different methods for different formats of output?
-        //eg.   public void outputConsole(List<int>)
-
         public static void ReportToConsole(Analyse analysis)
         {
             Console.WriteLine(GenerateReportText(analysis));
