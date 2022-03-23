@@ -12,12 +12,7 @@ namespace CMP1903M_Assessment_1
     /// </summary>
     public class Analyse
     {
-        private string _text = string.Empty;
-        public string Text
-        {
-            get { return _text; }
-            private set { _text = value; }
-        }
+        public string Text { get; private set; }
 
         public Analyse(string text)
         {
