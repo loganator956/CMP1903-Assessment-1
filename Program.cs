@@ -53,7 +53,7 @@ namespace CMP1903M_Assessment_1
                     console = !console && !file; // ensures that the report will go to console if selects neither
                     Report report = new Report(analysis);
                     if (console) { report.ReportToConsole(); };
-                    if (file) { report.ReportToFile(); }; // TODO: Add option to choose where the file is saved to?
+                    if (file) { report.ReportToFile(); };
                 }
             }
             else

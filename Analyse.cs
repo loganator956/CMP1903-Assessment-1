@@ -12,31 +12,29 @@ namespace CMP1903M_Assessment_1
     /// </summary>
     public class Analyse
     {
-        public string Text { get; private set; }
-
         public Analyse(string text)
         {
             Text = text;
         }
 
+        private const int LongWordThreshold = 7;
         readonly char[] Vowels = { 'a', 'e', 'i', 'o', 'u' };
 
-        /*
-        0. Sentence Count
-        1. Vowels Count
-        2. Sonsonants Count
-        3. Upper Case Letters Count
-        4. Lower Case Letters Count
-        */
+        public string Text { get; private set; }
         public int[] Statistics = new int[5];
-
         public int[] LetterFrequencies = new int[26]; // add 97 to the index to get the char value
 
         /// <summary>
-        /// 
+        /// Analyses the input text
         /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
+        /// <returns>
+        /// Array of statistics:
+        /// 0 Sentence Count,
+        /// 1 Vowels Count,
+        /// 2 Consonants Count,
+        /// 3 Upper Case Letters Count,
+        /// 4 Lower Case Letters Count
+        /// </returns>
         public int[] AnalyseText()
         {
             int[] values = new int[5];
@@ -117,8 +115,11 @@ namespace CMP1903M_Assessment_1
             return values;
         }
 
-        private const int LongWordThreshold = 7;
 
+        /// <summary>
+        /// Gathers list of long words from the text input
+        /// </summary>
+        /// <returns>List of strings of each long word</returns>
         public List<string> GetLongWords()
         {
             List<string> longWordsList = new List<string>();
@@ -132,7 +133,6 @@ namespace CMP1903M_Assessment_1
                     if (wordProgress.Length > LongWordThreshold)
                     {
                         // word is long
-                        // TODO: Could check if the word is already added to not have duplicates?
                         longWordsList.Add(wordProgress);
                     }
                     wordProgress = "";
