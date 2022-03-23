@@ -22,7 +22,7 @@ namespace CMP1903M_Assessment_1
             string text = "";
 
             // TODO: Use * to end the input
-            Console.WriteLine("Manual Text Input (Supports multiline using \'\\n\')");
+            Console.WriteLine(@"Manual Text Input (Supports multiline using '\n')");
             string inputText = Console.ReadLine() ?? string.Empty;
             text = inputText.Replace("\\n", "\n");
 
