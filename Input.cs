@@ -48,7 +48,7 @@ namespace CMP1903M_Assessment_1
             Console.WriteLine($"Enter the file name to read. (Default: '{DefaultFilePath}')");
             string response = Console.ReadLine() ?? DefaultFilePath;
 
-            string filePath = string.Empty;
+            string filePath;
 
             if (string.IsNullOrEmpty(response)) // still exists since want to check that string is not empty string
             {
