@@ -19,7 +19,7 @@ namespace CMP1903M_Assessment_1
             reportText = GenerateReportText();
         }
         public Analyse Analysis { get; private set; }
-        string reportText = "";
+        string _reportText = string.Empty;
 
         /// <summary>
         /// Generates the report text from the analysis
