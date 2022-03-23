@@ -14,7 +14,7 @@ namespace CMP1903M_Assessment_1
         {
             Console.WriteLine("Main Menu");
             Console.WriteLine("What type of input would you like to use?\n1 Manual Text Entry\n2 Text File");
-            string input = Console.ReadLine();
+            string input = Console.ReadLine() ?? "0";
             int selection = 0;
             if (int.TryParse(input, out selection))
             {
