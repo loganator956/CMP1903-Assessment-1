@@ -24,6 +24,7 @@ namespace CMP1903M_Assessment_1
             // TODO: Use * to end the input
             Console.WriteLine("Manual Text Input (Supports multiline using \'\\n\')");
             string inputText = Console.ReadLine() ?? string.Empty;
+            // interpreting some escape characters in the user's input
             text = inputText.Replace("\\n", "\n");
 
             if (ShowConfirmDialog(text))
