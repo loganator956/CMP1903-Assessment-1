@@ -83,33 +83,34 @@ namespace CMP1903M_Assessment_1
             values[2] = consonantsCount;
             #endregion
 
-            #region upper & lower cases
-            int upperCount = 0;
-            int lowerCount = 0;
-            foreach (char c in inputChars)
-            {
-                if (Char.IsUpper(c))
-                {
-                    upperCount++;
-                }
-                else
-                {
-                    lowerCount++;
-                }
-            }
-            values[3] = upperCount;
-            values[4] = lowerCount;
-            #endregion
-
-            // TODO: Count freq. of characters and stuff
+            #region characters
             int[] characterFrequencies = new int[26];
             foreach (char c in inputChars)
             {
+                if (Vowels.Contains(Char.ToLower(c)))
+                {
+                    values[1]++; // vowels
+                }
+                else if (!Vowels.Contains(Char.ToLower(c)) && Char.IsLetter(c))
+                {
+                    values[2]++; // consonants
+                }
+                if (Char.IsUpper(c))
+                {
+                    values[3]++; // upper case
+                }
+                else
+                {
+                    values[4]++; // lower case
+                }
+
+                // counting characters
                 if (Char.IsLetter(c))
                 {
                     characterFrequencies[Convert.ToInt32(Char.ToLower(c)) - 97]++;
                 }
             }
+            #endregion
 
             LetterFrequencies = characterFrequencies;
             Statistics = values;
