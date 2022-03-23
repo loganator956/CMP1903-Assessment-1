@@ -39,10 +39,9 @@ namespace CMP1903M_Assessment_1
                     Console.WriteLine("Text analysed. Would you like to view your report in: \n1. Console (Default)\n2. File");
                     // find out whether the user wants to report to console, file, or both
                     string response = Console.ReadLine() ?? "1"; // Default to view in console, if null
-                    char[] responseChars = response.Trim().ToCharArray();
                     bool console = false;
                     bool file = false;
-                    foreach (char c in responseChars)
+                    foreach (char c in response.Trim())
                     {
                         if (c == '1')
                             console = true;
