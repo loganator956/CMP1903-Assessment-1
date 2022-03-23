@@ -16,7 +16,7 @@ namespace CMP1903M_Assessment_1
         public Report(Analyse analysis)
         {
             Analysis = analysis;
-            reportText = GenerateReportText();
+            _reportText = GenerateReportText();
         }
         public Analyse Analysis { get; private set; }
         string _reportText = string.Empty;
@@ -44,7 +44,7 @@ Now for letter frequences:");
 
         public void ReportToConsole()
         {
-            Console.WriteLine(reportText);
+            Console.WriteLine(_reportText);
         }
 
         private const string DefaultReportFilePath = "report.txt";
@@ -59,7 +59,7 @@ Now for letter frequences:");
             Console.WriteLine("Saving report to file");
             try
             {
-                File.WriteAllText(outputPath, reportText);
+                File.WriteAllText(outputPath, _reportText);
                 Console.WriteLine($"Successfully saved report to the file {outputPath}");
                 Console.WriteLine("Checking long words");
                 List<string> longWords = Analysis.GetLongWords();
