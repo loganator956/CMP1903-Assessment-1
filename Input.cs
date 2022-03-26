@@ -21,7 +21,6 @@ namespace CMP1903M_Assessment_1
         {
             string text = "";
 
-            // TODO: Use * to end the input
             Console.WriteLine("Manual Text Input (Use * at the end of the line to end input)");
             while (true)
             {
@@ -55,11 +54,11 @@ namespace CMP1903M_Assessment_1
             const string DefaultFilePath = "text.txt";
 
             Console.WriteLine($"Enter the file name to read. (Default: '{DefaultFilePath}')");
-            string response = Console.ReadLine();
+            string response = Console.ReadLine() ?? DefaultFilePath;
 
-            string filePath = string.Empty;
+            string filePath;
 
-            if (string.IsNullOrEmpty(response))
+            if (string.IsNullOrEmpty(response)) // still exists since want to check that string is not empty string
             {
                 // user responded with nothing, use default
                 filePath = DefaultFilePath;
@@ -119,7 +118,7 @@ namespace CMP1903M_Assessment_1
         static bool ShowConfirmDialog(string input)
         {
             Console.WriteLine($"You entered:\n{input}\nAre you sure about your inputs [Y/n]?");
-            string response = Console.ReadLine();
+            string response = Console.ReadLine() ?? "y";
             // defaults to yes in this case so only check if the user says no
             if (response.Trim().ToLower() == "n")
             {

@@ -14,7 +14,7 @@ namespace CMP1903M_Assessment_1
         {
             Console.WriteLine("Main Menu");
             Console.WriteLine("What type of input would you like to use?\n1 Manual Text Entry\n2 Text File");
-            string input = Console.ReadLine();
+            string input = Console.ReadLine() ?? "0";
             int selection = 0;
             if (int.TryParse(input, out selection))
             {
@@ -36,13 +36,12 @@ namespace CMP1903M_Assessment_1
                 if (analysis != null)
                 {
                     analysis.AnalyseText();
-                    Console.WriteLine("Report generated. Would you like to: \n1. View in Console (Default)\n2. View in File");
+                    Console.WriteLine("Text analysed. Would you like to view your report in: \n1. Console (Default)\n2. File");
                     // find out whether the user wants to report to console, file, or both
                     string response = Console.ReadLine() ?? "1"; // Default to view in console, if null
-                    char[] responseChars = response.Trim().ToCharArray();
                     bool console = false;
                     bool file = false;
-                    foreach (char c in responseChars)
+                    foreach (char c in response.Trim())
                     {
                         if (c == '1')
                             console = true;
@@ -51,10 +50,10 @@ namespace CMP1903M_Assessment_1
                         else
                             Debug.LogError($"Unrecognised option: {c.ToString()}");
                     }
-                    if (!console && !file) { console = true; }; // ensures that the report will go to console if selects neither
+                    console = !console && !file; // ensures that the report will go to console if selects neither
                     Report report = new Report(analysis);
                     if (console) { report.ReportToConsole(); };
-                    if (file) { report.ReportToFile(); }; // TODO: Add option to choose where the file is saved to?
+                    if (file) { report.ReportToFile(); };
                 }
             }
             else
