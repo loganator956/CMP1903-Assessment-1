@@ -21,11 +21,18 @@ namespace CMP1903M_Assessment_1
         {
             string text = "";
 
-            // TODO: Use * to end the input
-            Console.WriteLine(@"Manual Text Input (Supports multiline using '\n')");
-            string inputText = Console.ReadLine() ?? string.Empty;
-            // interpreting some escape characters in the user's input
-            text = inputText.Replace("\\n", "\n");
+            Console.WriteLine("Manual Text Input (Use * at the end of the line to end input)");
+            while (true)
+            {
+                string tempLine = Console.ReadLine();
+                if (tempLine[tempLine.Length - 1] == '*')
+                {
+                    // ends with *
+                    text += tempLine.Remove(tempLine.Length - 1);
+                    break;
+                }
+                text += tempLine + "\n";
+            }
 
             if (ShowConfirmDialog(text))
             {
@@ -82,8 +89,18 @@ namespace CMP1903M_Assessment_1
             }
             try
             {
-                string fileContents = File.ReadAllText(fileName);
-                text = fileContents;
+                // string fileContents = File.ReadAllText(fileName);
+                // text = fileContents;
+                string[] lines = File.ReadAllLines(fileName);
+                foreach(string s in lines)
+                {
+                    if (s.EndsWith('*'))
+                    {
+                        text += s.Remove(s.Length-1);
+                        break;
+                    }
+                    text += s + "\n";
+                }
             }
             catch (Exception except)
             {
