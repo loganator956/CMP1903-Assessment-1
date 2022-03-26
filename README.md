@@ -4,7 +4,7 @@ A .NET 6.0 console application for the CMP1903M Assessment 1.
 
 ## Task Completion
 
-The task was 'analysis of text'. This program allows you to input text, parsing certain escaped characters (particularly '\n'), analyses it and generates a report. It analyses:
+The task was 'analysis of text'. This program allows you to input text, analyses it and generates a report. It analyses:
 
 - Sentences count
 - Vowels count
