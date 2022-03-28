@@ -50,7 +50,7 @@ namespace CMP1903M_Assessment_1
                         else
                             Debug.LogError($"Unrecognised option: {c.ToString()}");
                     }
-                    console = !console && !file; // ensures that the report will go to console if selects neither
+                    if (!file && !console) { console = true; }; // for some reason the other method didn't work so reverted back to this.
                     Report report = new Report(analysis);
                     if (console) { report.ReportToConsole(); };
                     if (file) { report.ReportToFile(); };
