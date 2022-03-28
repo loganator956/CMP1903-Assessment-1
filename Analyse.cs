@@ -72,7 +72,7 @@ namespace CMP1903M_Assessment_1
                 {
                     vowelCount++;
                 }
-                else
+                else if (Char.IsLetter(c)) // not a vowel and not a letter
                 {
                     consonantsCount++;
                 }
